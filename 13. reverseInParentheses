@@ -1,0 +1,22 @@
+std::string reverseInParentheses(std::string array) {
+    
+    std::stack<int> stack;
+    
+    for (int i = 0; i < array.size(); i++) {
+        if (array[i] == '(')
+            stack.push(i);
+        if (array[i] == ')') {
+            int start = stack.top();
+            stack.pop();
+            reverse(array.begin() + start, array.begin() + i);
+        }   
+    }
+    
+    std::string answer;
+    for (int i = 0; i < array.size(); i++) {
+        if (array[i] != '(' && array[i] != ')')
+            answer += array[i];
+    }
+
+    return answer;
+}
